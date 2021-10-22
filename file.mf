@@ -1,0 +1,13 @@
+CACHE MANIFEST
+/offline_site/index.html
+/offline_site/assets/css/styles.css
+/offline_site/assets/css/swiper-bundle.min.css
+/offline_site/assets/pdf/Vishal_Chauhan(Resume).pdf
+/offline_site/assets/js/main.js
+/offline_site/assets/js/swiper-bundle.min
+/offline_site/assets/Images/about_image.png
+/offline_site/assets/Images/home_image.png
+/offline_site/assets/Images/blob.html
+/offline_site/assets/Images/VC_favicon.html
+/offline_site/js/app.js
+/offline_site/img/logo.png
