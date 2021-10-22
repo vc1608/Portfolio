@@ -30,3 +30,21 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
 	console.log('Fetch Intercepted for:', event.request.url);
 });
+
+self.addEventListener('install', event => {
+  console.log('Service worker install event!');
+  event.waitUntil(
+    caches.open(cacheName)
+      .then(cache => {
+        return cache.addAll(resourcesToPrecache);
+      })
+  );
+});
+
+self.addEventListener('fetch', event => {
+  event.respondWith(caches.match(event.request)
+    .then(cachedResponse => {
+      return cachedResponse || fetch(event.request);
+    })
+  );
+});
