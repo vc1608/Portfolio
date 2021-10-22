@@ -1,4 +1,13 @@
-wget --mirror --convert-links --html-extension -p http://www.example.com/
+if('serviceWorker' in navigator) {
+  let registration;
+
+  const registerServiceWorker = async () => {
+    registration = await  
+navigator.serviceWorker.register('./service-worker.js');
+  };
+
+  registerServiceWorker();
+}
 
 <!DOCTYPE html>
 
