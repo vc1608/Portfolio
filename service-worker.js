@@ -18,11 +18,8 @@ const filesToCache = [
   '/img/logo.png'
 ];
 
-// the event handler for the activate event
 self.addEventListener('activate', e => self.clients.claim());
 
-// the event handler for the install event 
-// typically used to cache assets
 self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(cacheName)
@@ -30,8 +27,6 @@ self.addEventListener('install', e => {
   );
 });
 
-// the fetch event handler, to intercept requests and serve all 
-// static assets from the cache
 self.addEventListener('fetch', e => {
   e.respondWith(
     caches.match(e.request)
