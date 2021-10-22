@@ -1,13 +1,31 @@
 if('serviceWorker' in navigator) {
-  let registration;
-
-  const registerServiceWorker = async () => {
-    registration = await  
-navigator.serviceWorker.register('./service-worker.js');
-  };
-
-  registerServiceWorker();
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => {
+        console.log('Registered!', reg);
+      }).catcher(err => {
+        console.log('Registration failed:',err);
+      });
+  });
 }
+
+self.addEventListener('install', event => {
+  console.log('Service worker install event!');
+  event.waitUntil(
+    caches.open(cacheName)
+      .then(cache => {
+        return cache.addAll(resourcesToPrecache);
+      })
+  );
+});
+
+self.addEventListener('fetch', event => {
+  event.respondWith(caches.match(event.request)
+    .then(cachedResponse => {
+      return cachedResponse || fetch(event.request);
+    })
+  );
+});
 
 <!DOCTYPE html>
 
